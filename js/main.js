@@ -818,8 +818,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     openBtn.addEventListener('click', () => {
       
-        /*initSynth();
-        musicPlaying = true;
+        initSynth();
+        /*musicPlaying = true;
         if (audioCtx && audioCtx.state === 'suspended') {
             audioCtx.resume();
         }
