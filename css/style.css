@@ -1,0 +1,512 @@
+/* ==========================================================================
+   Variables & General Resets
+   ========================================================================== */
+:root {
+    --purple-dark: #090514;
+    --purple-mid: #1c0e35;
+    --purple-accent: #6A0DAD;
+    --lavender: #E6E6FA;
+    --white: #ffffff;
+    --gold: #FFD700;
+    --glass-bg: rgba(25, 12, 45, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+body {
+    background-color: var(--purple-dark);
+    color: var(--lavender);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+/* Custom Smooth Scroll support */
+html.lenis {
+    height: auto;
+}
+
+.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+/* ==========================================================================
+   Background & Canvas Styling
+   ========================================================================== */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+    transition: filter 1.5s ease;
+}
+
+/* ==========================================================================
+   Typography & Typography Styling
+   ========================================================================== */
+h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.korean-accent-top {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.95rem;
+    font-weight: 200;
+    letter-spacing: 4px;
+    color: rgba(230, 230, 250, 0.65);
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+}
+
+.korean-accent-bottom {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: #d39df1;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px rgba(177, 134, 247, 0.5);
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeInUp 1.5s forwards 0.8s;
+}
+
+/* ==========================================================================
+   Common Interactive Components
+   ========================================================================== */
+.audio-control {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.audio-control:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.music-note {
+    font-size: 1.1rem;
+    color: var(--lavender);
+    animation: pulseGlow 2s infinite alternate;
+}
+
+/* Glassmorphic Container Templates */
+.glass-container, .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    padding: 3rem;
+    max-width: 650px;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.5s ease;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(138, 43, 226, 0.15),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: 0.75s;
+    pointer-events: none;
+}
+
+.glass-card:hover::before {
+    left: 100%;
+}
+
+/* Premium Buttons */
+.btn-primary {
+    position: relative;
+    background: rgba(106, 13, 173, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    padding: 14px 36px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    outline: none;
+    display: inline-block;
+    margin-top: 1.5rem;
+}
+
+.btn-primary:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 25px rgba(106, 13, 173, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.4) 0%, transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.btn-primary:hover .btn-glow {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Screen Layouts
+   ========================================================================== */
+.screen {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 1. Landing Screen */
+#landing-screen {
+    background: radial-gradient(circle at bottom center, var(--purple-mid) 0%, var(--purple-dark) 100%);
+}
+
+.landing-card {
+    animation: floatingUI 6s ease-in-out infinite alternate;
+}
+
+.landing-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.landing-title .highlight {
+    font-weight: 400;
+    background: linear-gradient(45deg, #d39df1, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.landing-subtitle {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #bfaed4;
+    margin-bottom: 2rem;
+}
+
+/* 2. Cinematic Interlude */
+#cinematic-screen {
+    background: var(--purple-dark);
+}
+
+.cinematic-text-container {
+    max-width: 750px;
+    width: 90%;
+    text-align: center;
+    padding: 0 1.5rem;
+}
+
+.typing-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--lavender);
+    text-shadow: 0 0 10px rgba(230, 230, 250, 0.25);
+    opacity: 0;
+}
+
+/* 3. Memory Journey */
+#journey-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+.scroll-wrapper {
+    width: 100%;
+}
+
+.scroll-section {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10vh 5vw;
+    perspective: 1000px;
+}
+
+.letter-card {
+    transform: translateY(40px) rotateX(4deg);
+    opacity: 0;
+    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.2s ease;
+}
+
+.letter-card.visible {
+    transform: translateY(0) rotateX(0deg);
+    opacity: 1;
+}
+
+.letter-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    line-height: 1.75;
+    font-weight: 300;
+    color: var(--lavender);
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.letter-text strong {
+    font-weight: 600;
+    color: var(--white);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.text-bengali {
+    font-family: 'Cormorant Garamond', 'Inter', sans-serif;
+    font-style: italic;
+}
+
+/* 4. Surprise Section Elements */
+.surprise-trigger-card {
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, #e4cdff, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 5. Surprise Sequence */
+#surprise-sequence {
+    background: black;
+    transition: background 3s ease;
+}
+
+.surprise-dialogue-box {
+    max-width: 600px;
+    width: 85%;
+    text-align: center;
+}
+
+.hidden-fade {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--lavender);
+    margin: 2rem 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 2s ease, transform 2s ease;
+}
+
+.hidden-fade.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 6. Climax Screen */
+#climax-screen {
+    background: radial-gradient(circle at center, #1f0b3d 0%, #05020a 100%);
+    flex-direction: column;
+}
+
+.climax-content {
+    text-align: center;
+    z-index: 15;
+    max-width: 800px;
+    width: 95%;
+}
+
+.climax-title {
+    font-size: 5rem;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 30px rgba(106, 13, 173, 0.8);
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 2.5s cubic-bezier(0.1, 1, 0.1, 1);
+}
+
+.climax-title.reveal {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.climax-title .emoji {
+    font-size: 3rem;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.climax-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.8rem;
+    color: #e2caff;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 2s ease 1s;
+}
+
+.climax-subtitle.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.ending-footer {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    z-index: 15;
+}
+
+.ending-footer p {
+    font-size: 0.8rem;
+    color: rgba(230, 230, 250, 0.4);
+    letter-spacing: 1px;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+@keyframes floatingUI {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-12px) rotate(1deg);
+    }
+}
+
+@keyframes pulseGlow {
+    0% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+@media (max-width: 768px) {
+    .glass-container, .glass-card {
+        padding: 2rem 1.5rem;
+        border-radius: 16px;
+    }
+
+    .landing-title {
+        font-size: 2.5rem;
+    }
+
+    .landing-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .letter-text {
+        font-size: 1.35rem;
+        line-height: 1.65;
+    }
+
+    .cinematic-text-container .typing-text {
+        font-size: 1.6rem;
+    }
+
+    .climax-title {
+        font-size: 3.2rem;
+    }
+    
+    .climax-title .emoji {
+        font-size: 2.2rem;
+    }
+
+    .climax-subtitle {
+        font-size: 1.3rem;
+    }
+
+    .audio-control {
+        top: 15px;
+        right: 15px;
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+}

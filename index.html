@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Soumili 💜</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500&family=Noto+Serif+KR:wght@200;300;400&display=swap" rel="stylesheet">
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- CDNs for Animations & Smooth Scrolling -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+
+    <!-- Main Dynamic Interactive Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Ambient Sound Indicator -->
+    <div class="audio-control" id="audioToggle" style="display: none;">
+        <span class="music-note">♫</span>
+        <span class="audio-status">Sound On</span>
+    </div>
+
+    <!-- 1. LANDING SCREEN -->
+    <section class="screen" id="landing-screen">
+        <div class="glass-container landing-card">
+            <div class="korean-accent-top">태어나줘서 고마워</div>
+            <h1 class="landing-title">Happy Birthday<br><span class="highlight">Soumili 🤍💜</span></h1>
+            <p class="landing-subtitle">A little surprise made with lots of memories.</p>
+            <button class="btn-primary" id="open-btn">
+                <span>Open My Kidney</span>
+                <span class="btn-glow"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- 2. CINEMATIC INTERLUDE (Initially Hidden) -->
+    <section class="screen hidden" id="cinematic-screen">
+        <div class="cinematic-text-container">
+            <p id="cinematic-text" class="typing-text"></p>
+        </div>
+    </section>
+
+    <!-- 3. MEMORY JOURNEY (Scroll Container) -->
+    <main class="hidden" id="journey-container">
+        <!-- Section Cards wrapper -->
+        <div class="scroll-wrapper">
+            
+            <!-- Card 1 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Happy Birthday, Soumili. 🤍💜🎂<br><br>
+                        Aaj sab tumhe "Happy Birthday" bolenge. Main bhi wahi bol sakta tha... lekin usse pehle ek baat.<br>
+                        <strong>Thank you.</strong>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 2 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Thank you har uss lamhe ke liye jab zindagi thodi mushkil thi, phir bhi tum meri life ka ek khoobsurat hissa bani rahi.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 3 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Aur thank you un saare lamhon ke liye jo shayad tumhare liye bas normal the, lekin meri yaadon ka hissa ban gaye.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 4 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Zindagi mein bahut log milte hain, bahut log chale bhi jaate hain.<br><br>
+                        Lekin kuch log roz baat na karke bhi kabhi paraye nahi hote. Tum unhi logon mein se ho.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 5 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Humari story perfect nahi thi... aur shayad isi liye itni sachchi thi.<br><br>
+                        Humne galtiyan bhi ki, hasi bhi baanti, kabhi ek dusre ko irritate bhi kiya.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 6 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Main tujhe gaali bhi deta tha... aur tu jaanti hai woh mera ajeeb sa love language tha.<br><br>
+                        Dil pe mat liya kar. 😂❤️
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 7 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text text-bengali">
+                        Aur haan...<br><br>
+                        "Oi age mat count kar moti... karon tumi cho peyecho!!!!" 😂
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 8 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Pata nahi future mein hum kitna baat karenge. Shayad kam. Shayad bilkul nahi. Shayad zindagi humein alag raaston par le jaaye. Ya shayad yeh mera last message ho...
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 9 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Aur sach kahun... Ye soch kar aaj bhi thoda ajeeb lagta hai.<br><br>
+                        Lekin ek baat maine samajh li hai... Kuch rishte saath rehkar nahi, yaadon mein rehkar bhi bahut khoobsurat hote hain.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 10 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Aur haan... Bichhadne ke toh hazaar bahane aur situations mil jaate hain. Lekin saath rehne ka sirf ek reason hota hai — <strong>Dil</strong>.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 11 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Use friendship bolo, love bolo, ya relationship... Naam alag ho sakte hain, lekin asli ehsaas hamesha ek hi hota hai.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 12 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Agar kabhi kisi din, kisi random gaane, kisi jagah, kisi baarish ki khushboo, ya kisi chhoti si baat par meri yaad aa jaaye...<br><br>
+                        Toh bas ek baar muskura dena. Mere liye itna hi kaafi hoga.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 13 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Main nahi jaanta meri yaad tumhari zindagi mein kitni der tak rahegi. Lekin itna zaroor jaanta hoon ki meri yaadon mein tum hamesha ek bahut hi khoobsurat jagah par rahogi.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 14 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Tumhari jagah meri life mein kabhi kisi aur ne li hi nahi... Aur shayad kabhi le bhi na paaye. Kuch log replace nahi hote, bas yaadon ka hissa ban jaate hain.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 15 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Bas ek dua hai... Tumhare saare sapne poore hon. Jo khushi tum dusron ko deti ho, woh tumhe usse bhi zyada mile.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 16 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Aur jab kabhi zindagi mushkil lage, toh kabhi ye mat sochna ki tumhari value kam hai. Tum jitni ho... utni hi kaafi ho.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 17 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Aur jis din tum khud ko us nazar se dekhna seekh jaogi, us din tumhe samajh aa jayega ki tum kitni special ho.<br><br>
+                        Happy Birthday, Meow. ❤️🌻
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 18 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Khush rehna. Kyunki is duniya mein bahut log tumhe jaante honge... lekin bahut kam log honge jo dil se chahenge ki tum hamesha muskurati raho. Main unmein se ek hoon.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 19 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Aur agar kabhi zindagi tumhe ye sochne par majboor kare ki kaun tha jo bina kisi matlab ke tumhari khushi ke liye dua karta tha... toh bas ek baar meri taraf dekh lena.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Card 20 -->
+            <section class="scroll-section">
+                <div class="glass-card letter-card">
+                    <div class="card-glow"></div>
+                    <p class="letter-text">
+                        Shayad tab samajh aa jaaye... Kuch log sirf zindagi ka hissa nahi hote, woh zindagi ki sabse khoobsurat yaadon mein se ek ban jaate hain.<br><br>
+                        Take care... Always. 🤍
+                    </p>
+                </div>
+            </section>
+
+            <!-- 4. SURPRISE TRIGGER SECTION -->
+            <section class="scroll-section" id="pre-surprise-section">
+                <div class="glass-card surprise-trigger-card">
+                    <h2 class="section-title">One Last Thing...</h2>
+                    <button class="btn-primary" id="surprise-btn">
+                        <span>Click Me 🌻</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- 5. FINAL SURPRISE SEQUENCE (Initially Hidden) -->
+    <section class="screen hidden" id="surprise-sequence">
+        <div class="surprise-dialogue-box">
+            <p id="surprise-text-1" class="hidden-fade">You'll probably receive hundreds of wishes today.</p>
+            <p id="surprise-text-2" class="hidden-fade">But I hope this becomes the one you'll remember years later.</p>
+            <p id="surprise-text-3" class="hidden-fade">Because some people don't just wish you happiness...</p>
+            <p id="surprise-text-4" class="hidden-fade">They silently pray for it.</p>
+        </div>
+    </section>
+
+    <!-- 6. FINAL MAJESTIC CLIMAX SCREEN (Initially Hidden) -->
+    <section class="screen hidden" id="climax-screen">
+        <div class="climax-content">
+            <div class="korean-accent-bottom">아포방포 💜 보라해</div>
+            <h1 class="climax-title">Happy Birthday<br><span class="highlight">Soumili</span><br><span class="emoji">🤍💜🌻</span></h1>
+            <p class="climax-subtitle">May your smile always remain brighter than every star.</p>
+        </div>
+        <footer class="ending-footer">
+            <p>Made with countless memories, endless prayers, and a heart that will always wish the best for you.</p>
+        </footer>
+    </section>
+
+    <!-- JS Link -->
+    <script src="js/main.js"></script>
+</body>
+</html>
