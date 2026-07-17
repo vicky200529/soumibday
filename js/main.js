@@ -525,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (audioCtx) return;
         const AudioContextClass = window.AudioContext || window.webkitAudioContext;
         audioCtx = new AudioContextClass();
-        playSequence();
+        //playSequence();
     }
 
     function playWarmPianoNote(frequency, duration, delayTime = 0) {
@@ -818,15 +818,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     openBtn.addEventListener('click', () => {
       
-        initSynth();
+        /*initSynth();
         musicPlaying = true;
         if (audioCtx && audioCtx.state === 'suspended') {
             audioCtx.resume();
         }
-        playSequence();
-
+      //  playSequence();
+*/
         
-        audioToggle.style.display = 'flex';
+       // audioToggle.style.display = 'flex';
 
         
         gsap.to('.landing-card', {
